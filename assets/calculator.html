@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Carbon Calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+</head>
+<body>
+
+    <!-- Main Content -->
+    <section class="wrapper style1">
+        <div class="container">
+            <h2>Corporate Carbon Calculator</h2>
+
+            <form method="POST">
+                <label for="country">🌍 Your Country</label>
+                <select name="country" id="country">
+                    <option value="South Africa">South Africa</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Kenya">Kenya</option>
+                </select>
+
+                <label for="distance">🚗 Daily commute distance (in km)</label>
+                <input type="number" name="distance" id="distance" step="0.1" required>
+
+                <label for="electricity">💡 Monthly electricity consumption (in kWh)</label>
+                <input type="number" name="electricity" id="electricity" step="0.1" required>
+
+                <label for="waste">🍽️ Waste generated per week (in kg)</label>
+                <input type="number" name="waste" id="waste" step="0.1" required>
+
+                <label for="meals">🍽️ Number of meals per day</label>
+                <input type="number" name="meals" id="meals" required>
+
+                <button type="submit">Calculate CO2 Emissions</button>
+            </form>
+
+            {% if result %}
+            <h3>Results</h3>
+            <p>🚗 Transportation: {{ transportation_emissions }} tonnes CO2 per year</p>
+            <p>💡 Electricity: {{ electricity_emissions }} tonnes CO2 per year</p>
+            <p>🍽️ Diet: {{ diet_emissions }} tonnes CO2 per year</p>
+            <p>🗑️ Waste: {{ waste_emissions }} tonnes CO2 per year</p>
+            <p>🌍 Your total carbon footprint is: {{ total_emissions }} tonnes CO2 per year</p>
+            {% endif %}
+        </div>
+    </section>
+
+</body>
+</html>
